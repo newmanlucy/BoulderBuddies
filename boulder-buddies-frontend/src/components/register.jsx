@@ -28,7 +28,7 @@ class Register extends Component {
       this.setState({...this.state, "gender": e.target.checked})
     }
   }
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
     var form = new FormData();
     console.log("state:", this.state)
