@@ -18,6 +18,10 @@ def getUser(request, user_id):
     user = get_object_or_404(User, id=user_id)
     return JsonResponse(user.getJson())
 
+def getUserFromName(request, name):
+    user = get_object_or_404(User, name=name)
+    return JsonResponse(user.getJson())
+
 def getUserHtml(request, user_id):
     user = get_object_or_404(User, id=user_id)
     context = {
