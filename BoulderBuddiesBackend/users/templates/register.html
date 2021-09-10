@@ -1,0 +1,14 @@
+<form action="{% url 'postUser' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" placeholder="name" /> <br>
+        <label for="location">Location: </label>
+        <input type="text" name="location" id="location" placeholder="city/neighborhood" /> <br>
+        <label for="level">Level: V</label>
+        <input type="number" name="level" id="level" value="0" /> <br>
+        <label for="bio">Bio: </label> <br>
+        <textarea name="bio" id="bio" placeholder="bio" > </textarea>
+    </fieldset>
+    <input type="submit" value="Register">
+</form>

@@ -1,0 +1,14 @@
+<form action="{% url 'updateUserHtml' user.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" value="{{ user.name }}" /> <br>
+        <label for="location">Location: </label>
+        <input type="text" name="location" id="location" value="{{ user.location }}" /> <br>
+        <label for="level">Level: V</label>
+        <input type="number" name="level" id="level" value="{{ user.level }}" /> <br>
+        <label for="bio">Bio: </label> <br>
+        <textarea name="bio" id="bio">{{ user.bio }}</textarea>
+    </fieldset>
+    <input type="submit" value="Update">
+</form>
