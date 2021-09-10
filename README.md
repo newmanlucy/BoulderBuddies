@@ -1,2 +1,2 @@
 # BoulderBuddies
-Hack Together Boston 2021
+Tech Together Boston 2021
