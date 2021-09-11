@@ -11,9 +11,10 @@ class Register extends Component {
     this.rootUrl = "http://34.125.244.56";
     this.endpoint = "/users/";
     this.url = this.rootUrl + this.endpoint;
-    this.state = {username: "", level: "0", location: "", bio: "", gender: false}
+    this.state = {username: "", level: "0", location: "", bio: "", gender: false, user: {}}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   handleChange(e) {
@@ -45,8 +46,7 @@ class Register extends Component {
         method: "POST",
         mode: "cors",
         body: form,
-    }).then( res => res.json()).then(
-      this.handleRedirect)                    
+    }).then( res => res.json()).then(this.handleRedirect)                    
   }
 
   handleRedirect (res) {
@@ -55,7 +55,9 @@ class Register extends Component {
     console.log("in redirect: ", res);
     const uid = res["id"];
     console.log("uid: ", uid);
-    window.location.href = '../?uid=' + uid;
+    this.setState({...this.state, user: res})
+    console.log(this.state)
+    // window.location.href = '../?uid=' + uid;
   }
 
   render() {

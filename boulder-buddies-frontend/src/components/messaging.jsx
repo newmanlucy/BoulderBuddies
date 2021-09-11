@@ -60,6 +60,7 @@ class Messaging extends Component {
     // this.urlRoot = "http://34.125.244.56"
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdateState = this.handleUpdateState.bind(this);
   }
 
   handleChange(e) {
@@ -75,11 +76,7 @@ class Messaging extends Component {
         method: "POST",
         mode: "cors",
         body: form,
-    }).then( res => {
-      // console.log("JSON", res.json())
-      res.json()
-    }).then((data) => this.handleUpdateState(data)
-      )                    
+    }).then( res => res.json()).then(this.handleUpdateState)                    
   }
 
   handleUpdateState(data) {
@@ -87,10 +84,7 @@ class Messaging extends Component {
     console.log("data", data);
     this.setState(prevState => ({
       text: "",
-      messages: [...prevState.messages, {
-        text: prevState.text,
-        senderUID: this.props.uid1
-      }]
+      messages: [...prevState.messages, data]
     }))
   }
 
