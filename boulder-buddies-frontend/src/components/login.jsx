@@ -43,7 +43,7 @@ class Login extends Component {
     render() {
         return this.state.user === null ? <div className="home">
             <div className="container">
-                <form >
+                <form onSubmit={this.handleSubmit}>
                     <div>
                     <label for="name">Name: </label>
                     <input 
@@ -53,7 +53,7 @@ class Login extends Component {
                         placeholder="name" 
                         onChange={this.handleChange}
                         />
-                    <input type="button" value="Login" onClick={this.handleSubmit} />
+                    <input type="button" value="Login" />
                     </div>
                 </form>
                 <div>

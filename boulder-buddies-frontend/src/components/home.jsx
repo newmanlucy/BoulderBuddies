@@ -3,6 +3,7 @@ import { Map } from "./";
 import ClimberCard from "./climbercard";
 import '../styles/back.css'
 import LevelSlider from "./levelslider";
+import RadiusSlider from "./radiusslider";
 
 const containerStyle = {
   width: '800px',
@@ -16,9 +17,11 @@ class Home extends Component {
     this.state = {
       others: {results: []},
       minLevel: parseInt(this.props.user.level) - 2,
-      maxLevel: parseInt(this.props.user.level) + 2
+      maxLevel: parseInt(this.props.user.level) + 2,
+      radius: 50
     }  
     this.urlRoot = "http://localhost:8000"
+    this.setRadius = this.setRadius.bind(this);
     this.setMinMaxLevel = this.setMinMaxLevel.bind(this);
 
     // this.urlRoot = "http://34.125.244.56"
@@ -29,6 +32,13 @@ class Home extends Component {
     this.setState({...this.state,
       minLevel: data[0],
       maxLevel: data[1]
+    });
+  }
+
+  setRadius(data) {
+    console.log("DATA", data)
+    this.setState({...this.state,
+      radius: data
     });
   }
 
@@ -85,6 +95,10 @@ class Home extends Component {
                 maxLevel={this.state.maxLevel}
                 onChange={this.setMinMaxLevel}
                 syncWithParent={this.setMinMaxLevel} />
+              <RadiusSlider 
+                radius={this.state.radius} 
+                onChange={this.setRadius}
+                syncWithParent={this.setRadius} />
               </div>
               <div className="col-lg-5">
                 <Map 
