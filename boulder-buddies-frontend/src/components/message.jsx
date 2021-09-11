@@ -15,6 +15,7 @@ class Message extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
         <div className="message col-md-5">
             <div className="row float-right">

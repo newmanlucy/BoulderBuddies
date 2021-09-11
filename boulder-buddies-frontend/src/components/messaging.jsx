@@ -53,15 +53,48 @@ class Messaging extends Component {
   constructor(props){
     super(props)
     this.state = {
-      messages: {results: []}
+      messages: [],
+      text: ""
     }  
     this.urlRoot = "http://localhost:8000"
     // this.urlRoot = "http://34.125.244.56"
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    console.log(this.state)
+    this.setState({...this.state, "text": e.target.value})
+    console.log(this.state)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var form = new FormData();
+    form.append("text", this.state.text);
+    console.log("Submit")
+    fetch(this.getUrl(), {
+        method: "POST",
+        mode: "cors",
+        body: form,
+    }).then( res => {
+      console.log("JSON", res.json())
+    }).then(() => this.handleUpdateState()
+      )                    
+  }
+
+  handleUpdateState(res) {
+    console.log(this);
+    console.log("RES", res);
+    this.setState(prevState => ({
+      text: "",
+      messages: [...prevState.messages, prevState.text]
+    }))
   }
 
   getUrl() {
     console.log(this.props);
-    let url = this.urlRoot + "/users/messages/" + this.props.uid1 + "/" + this.props.uid2 + "/";
+    let url = `${this.urlRoot}/users/${this.props.uid1}/messages/${this.props.uid2}`;
     return url
   }
     // climber = {"name": "Rachel", "level": 4, "location": "Boston", "bio": "Hi...."};
@@ -74,7 +107,7 @@ class Messaging extends Component {
               (result) => {
               this.setState({
                   isLoaded: true,
-                  messages: result
+                  messages: result["messages"]
               });
               console.log("state", this.state)
               },
@@ -97,16 +130,26 @@ class Messaging extends Component {
         <div className="container">
           <div className="border row my-5">
               <div className="border">
-                {Object.entries(this.messages).map(([idx, message]) => (
+                {Object.entries(this.state.messages).map(([idx, message]) => (
                   <div key={idx}>
-                      <Message message={message} uid1={1}/>
+                      <Message message={message} uid1={this.props.uid1}/>
                   </div>
               ))}
               </div>
               <form className="col-md-5">
-                <input style={{width: "70%", margin: "5px"}} type="text" value={this.state.text} />
+                <input 
+                  style={{width: "70%", margin: "5px"}} 
+                  type="text" 
+                  value={this.state.text} 
+                  onChange={this.handleChange}
+                />
 
-                <input style={{width: "20%", margin: "5px"}} type="submit" value="Send" />
+                <input 
+                  style={{width: "20%", margin: "5px"}} 
+                  type="submit" 
+                  value="Send"
+                  onClick={this.handleSubmit}
+                />
               </form>
             </div>
         </div>
