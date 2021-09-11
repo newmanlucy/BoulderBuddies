@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 
 class Message extends Component {
     getStyle() {
-        console.log(this.props.message.senderUID === this.props.uid1)
         if (this.props.message.senderUID === this.props.uid1) {
             return {
-                backgroundColor: "LightGray"
+                backgroundColor: "Violet"
             }
         } else {
             return {
-                backgroundColor: "Violet"
+                backgroundColor: "LightGray"
             }
         }
     }
@@ -22,7 +21,7 @@ class Message extends Component {
                 <div className="" style={this.getStyle()}> 
                     <p>{this.props.message.text}</p>
                 </div>
-                    <p style={{fontSize: "8px", color: "gray"}}>{this.props.timeStamp}</p>
+                    <p style={{fontSize: "8px", color: "gray"}}>{this.props.message.timeStamp}</p>
                 <div className="row"> 
                 </div>
             </div>

@@ -71,6 +71,7 @@ def message(request, user_id1, user_id2):
         res = {"messages": []}
         for m in messages:
             res["messages"].append(m.getJson())
+        res["messages"].sort(key=lambda m: m["id"])
         return JsonResponse(res)
 
 # POST /users : create user

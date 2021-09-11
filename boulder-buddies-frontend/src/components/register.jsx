@@ -1,19 +1,22 @@
 import React, {Component} from "react";
 import '../styles/back.css'
 import '../styles/register-box.css'
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Home } from "./";
 
 class Register extends Component {
 
 
   constructor(props){
     super(props)
-    // this.rootUrl = "http://localhost:8000";
-    this.rootUrl = "http://34.125.244.56";
+    this.rootUrl = "http://localhost:8000";
+    // this.rootUrl = "http://34.125.244.56";
     this.endpoint = "/users/";
     this.url = this.rootUrl + this.endpoint;
-    this.state = {username: "", level: "0", location: "", bio: "", gender: false}
+    this.state = {username: "", level: "0", location: "", bio: "", gender: false, user: null}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   handleChange(e) {
@@ -45,8 +48,7 @@ class Register extends Component {
         method: "POST",
         mode: "cors",
         body: form,
-    }).then( res => res.json()).then(
-      this.handleRedirect)                    
+    }).then( res => res.json()).then(this.handleRedirect)                    
   }
 
   handleRedirect (res) {
@@ -55,11 +57,14 @@ class Register extends Component {
     console.log("in redirect: ", res);
     const uid = res["id"];
     console.log("uid: ", uid);
-    window.location.href = '../?uid=' + uid;
+    this.setState({...this.state, user: res})
+    console.log(this.state)
+    // window.location.href = '../?uid=' + uid;
   }
 
   render() {
-    return (
+    console.log(this.state);
+    return ( this.state.user === null ?
       <div className="register">
         <div className="container">
           <div className="row align-items-center my-5">
@@ -111,7 +116,18 @@ class Register extends Component {
           </div>
         </div>
       </div>
-    );
+     :
+     <Router>
+        <Switch>
+          <Redirect from="/register" to="/" />
+          <Route path="/" component={() => <Home 
+              uid={this.state.user.id}
+              user={this.state.user}
+            />}
+        />
+        </Switch>
+      </Router>
+     );
   }
 
 }

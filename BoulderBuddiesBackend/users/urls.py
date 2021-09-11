@@ -12,5 +12,5 @@ urlpatterns = [
     path('<int:user_id>/update/', views.updateUser, name='updateUserHtml'),
     path('register/', views.postUserHtml, name='registerUserHtml'),
     path('login/<name>', views.getUserFromName, name='getUserFromName'),
-    re_path(r'^(?P<user_id>[0-9])/query/', views.query, name='query')
+    path('<int:user_id>/query/', views.query, name='query')
 ]
