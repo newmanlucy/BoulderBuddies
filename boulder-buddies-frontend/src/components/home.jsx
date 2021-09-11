@@ -4,6 +4,8 @@ import ClimberCard from "./climbercard";
 import '../styles/back.css'
 import LevelSlider from "./levelslider";
 import RadiusSlider from "./radiusslider";
+import Button from '@material-ui/core/Button';
+
 
 const containerStyle = {
   width: '800px',
@@ -42,16 +44,20 @@ class Home extends Component {
     });
   }
 
-  getUrl(minLevel, maxLevel, radius) {
+  getUrl() {
     console.log(this.props);
     let url = this.urlRoot + "/users/" + this.props.uid + "/query";
-    let qString = `?min_level=${minLevel}&max_level${maxLevel}=&radius=${radius}`
+    let qString = `?min_level=${this.state.minLevel}&max_level${this.state.maxLevel}=&radius=${this.state.radius}`
     url += qString
     console.log(url)
     return url
   }
     // climber = {"name": "Rachel", "level": 4, "location": "Boston", "bio": "Hi...."};
     // cc = <ClimberCard climber={this.climber}/>
+
+    filter() {
+      
+    }
 
     componentDidMount() {
       fetch(this.getUrl(this.state.minLevel, this.state.maxLevel, 50))
@@ -90,6 +96,7 @@ class Home extends Component {
         <div className="container">
           <div className="row align-items-center my-5">
               <div className="col-lg-3"> 
+              <form>
               <LevelSlider 
                 minLevel={this.state.minLevel} 
                 maxLevel={this.state.maxLevel}
@@ -99,6 +106,14 @@ class Home extends Component {
                 radius={this.state.radius} 
                 onChange={this.setRadius}
                 syncWithParent={this.setRadius} />
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={this.filter}
+              >
+                Filter
+              </Button>
+              </form>
               </div>
               <div className="col-lg-5">
                 <Map 

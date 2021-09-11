@@ -53,7 +53,6 @@ class Login extends Component {
                         placeholder="name" 
                         onChange={this.handleChange}
                         />
-                    <input type="button" value="Login" />
                     </div>
                 </form>
                 <div>
