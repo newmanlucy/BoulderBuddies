@@ -110,7 +110,7 @@ class Register extends Component {
                       </div>
                       <div className="col-2 d-flex align-items-center">
                         <FormControlLabel
-                          control={<Checkbox name="checkedA" />}
+                          control={<Checkbox name="gender" id="gender" />}
                           label="Yes"
                           value={this.state.gender} 
                           onChange={this.handleChange}

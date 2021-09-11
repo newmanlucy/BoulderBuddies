@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import '../styles/back.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./";
+import TextField from '@material-ui/core/TextField';
+
 
 class Login extends Component {
 
@@ -45,14 +47,7 @@ class Login extends Component {
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                    <label for="name">Name: </label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        placeholder="name" 
-                        onChange={this.handleChange}
-                        />
+                    <TextField id="standard-basic" label="Name" onChange={this.handleChange} />
                     </div>
                 </form>
                 <div>
