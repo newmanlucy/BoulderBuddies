@@ -45,7 +45,7 @@ class Map extends Component {
             { /* Child components, such as markers, info windows, etc. */ }
             <></>
             {Object.entries(this.props.others).map(([idx, climber]) => (
-                <InfoWindowMarker user={climber} my_id={this.props.my_id} />
+                <InfoWindowMarker key={idx} user={climber} my_id={this.props.my_id} />
                 // <Marker key={idx} position={climber.position} />
             ))}
             {/* {Object.entries(this.props.others).map(([idx, climber]) => (

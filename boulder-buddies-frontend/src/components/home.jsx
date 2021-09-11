@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Map } from "./";
 import ClimberCard from "./climbercard";
 import '../styles/back.css'
+import LevelSlider from "./levelslider";
 
 const containerStyle = {
   width: '800px',
@@ -13,10 +14,22 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      others: {results: []}
+      others: {results: []},
+      minLevel: parseInt(this.props.user.level) - 2,
+      maxLevel: parseInt(this.props.user.level) + 2
     }  
     this.urlRoot = "http://localhost:8000"
+    this.setMinMaxLevel = this.setMinMaxLevel.bind(this);
+
     // this.urlRoot = "http://34.125.244.56"
+  }
+
+  setMinMaxLevel(data) {
+    console.log("DATA", data)
+    this.setState({...this.state,
+      minLevel: data[0],
+      maxLevel: data[1]
+    });
   }
 
   getUrl(minLevel, maxLevel, radius) {
@@ -31,7 +44,7 @@ class Home extends Component {
     // cc = <ClimberCard climber={this.climber}/>
 
     componentDidMount() {
-      fetch(this.getUrl(parseInt(this.props.user.level) - 2, parseInt(this.props.user.level) + 2, 50))
+      fetch(this.getUrl(this.state.minLevel, this.state.maxLevel, 50))
           .then(res => res.json())
           .then(
               (result) => {
@@ -54,13 +67,26 @@ class Home extends Component {
           );
     }
 
+  handleChange = (event, newValue) => {
+    // this.setMinMaxLevel();
+    this.setValue(newValue);
+    console.log(this.state)
+  };
+
   render() {
     return (
       <div className="home">
         <h1>Hello, {this.props.user.name}</h1>
         <div className="container">
-          <div className="border row align-items-center my-5">
-              <div className="border col-lg-7">
+          <div className="row align-items-center my-5">
+              <div className="col-lg-3"> 
+              <LevelSlider 
+                minLevel={this.state.minLevel} 
+                maxLevel={this.state.maxLevel}
+                onChange={this.setMinMaxLevel}
+                syncWithParent={this.setMinMaxLevel} />
+              </div>
+              <div className="col-lg-5">
                 <Map 
                   center={this.props.user.position} 
                   containerStyle={containerStyle} 
@@ -68,7 +94,7 @@ class Home extends Component {
                   my_id={this.props.user.id}
                   />
               </div>
-              <div className="border col-lg-2"></div>
+              <div className="col-lg-2"></div>
                 {Object.entries(this.state.others.results).map(([idx, climber]) => (
                   <div key={climber.name}>
                       <ClimberCard climber={climber}/>
