@@ -64,7 +64,12 @@ class Home extends Component {
           <div className="border row align-items-center my-5">
               <div className="border row col-lg-12">
               <div className="border col-lg-7">
-                <Map center={this.props.user.position} containerStyle={containerStyle} others={this.state.others.results} />
+                <Map 
+                  center={this.props.user.position} 
+                  containerStyle={containerStyle} 
+                  others={this.state.others.results}
+                  my_id={this.props.user.id}
+                  />
               </div>
               <div className="border col-lg-2"></div>
               <div className="border col-lg-3">

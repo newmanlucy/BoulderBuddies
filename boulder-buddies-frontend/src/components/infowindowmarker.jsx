@@ -23,6 +23,14 @@ handleToggleClose = () => {
 		isOpen: false
 	});
 }
+
+getMessageUrl() {
+	const url = `/messaging/${this.props.my_id}/${this.props.user.id}`;
+	console.log(url);
+	console.log("PROPS", this.props)
+	return url;
+}
+
 render() {
 
 return (
@@ -38,7 +46,7 @@ return (
              <div>
                 <h1>{this.props.user.name}</h1>
                 <p>V{this.props.user.level}. {this.props.user.bio}</p>
-                <a href="/message">Message</a>
+                <a href={this.getMessageUrl()}>Message</a>
              </div>
 		 </InfoWindow>
 	 	}

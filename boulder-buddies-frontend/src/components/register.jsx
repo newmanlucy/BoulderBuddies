@@ -53,14 +53,7 @@ class Register extends Component {
   }
 
   handleRedirect (res) {
-    // if( res.status === 200 )
-        // redirect here
-    console.log("in redirect: ", res);
-    const uid = res["id"];
-    console.log("uid: ", uid);
     this.setState({...this.state, user: res})
-    console.log(this.state)
-    // window.location.href = '../?uid=' + uid;
   }
 
   render() {
