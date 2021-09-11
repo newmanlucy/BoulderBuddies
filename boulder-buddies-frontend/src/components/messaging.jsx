@@ -63,37 +63,38 @@ class Messaging extends Component {
   }
 
   handleChange(e) {
-    console.log(this.state)
     this.setState({...this.state, "text": e.target.value})
-    console.log(this.state)
   }
 
   handleSubmit(e) {
     e.preventDefault();
     var form = new FormData();
     form.append("text", this.state.text);
-    console.log("Submit")
+    // console.log("Submit")
     fetch(this.getUrl(), {
         method: "POST",
         mode: "cors",
         body: form,
     }).then( res => {
-      console.log("JSON", res.json())
-    }).then(() => this.handleUpdateState()
+      // console.log("JSON", res.json())
+      res.json()
+    }).then((data) => this.handleUpdateState(data)
       )                    
   }
 
-  handleUpdateState(res) {
-    console.log(this);
-    console.log("RES", res);
+  handleUpdateState(data) {
+    // console.log(this);
+    console.log("data", data);
     this.setState(prevState => ({
       text: "",
-      messages: [...prevState.messages, prevState.text]
+      messages: [...prevState.messages, {
+        text: prevState.text,
+        senderUID: this.props.uid1
+      }]
     }))
   }
 
   getUrl() {
-    console.log(this.props);
     let url = `${this.urlRoot}/users/${this.props.uid1}/messages/${this.props.uid2}`;
     return url
   }
@@ -109,7 +110,6 @@ class Messaging extends Component {
                   isLoaded: true,
                   messages: result["messages"]
               });
-              console.log("state", this.state)
               },
               // Note: it's important to handle errors here
               // instead of a catch() block so that we don't swallow
@@ -119,7 +119,6 @@ class Messaging extends Component {
                   isLoaded: true,
                   error
               });
-              console.log("error", error);
               }
           );
     }
