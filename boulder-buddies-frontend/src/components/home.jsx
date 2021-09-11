@@ -25,6 +25,7 @@ class Home extends Component {
     this.urlRoot = "http://localhost:8000"
     this.setRadius = this.setRadius.bind(this);
     this.setMinMaxLevel = this.setMinMaxLevel.bind(this);
+    this.filter = this.filter.bind(this);
 
     // this.urlRoot = "http://34.125.244.56"
   }
@@ -32,16 +33,19 @@ class Home extends Component {
   setMinMaxLevel(data) {
     console.log("DATA", data)
     this.setState({...this.state,
-      minLevel: data[0],
-      maxLevel: data[1]
+      minLevel: data.minLevel,
+      maxLevel: data.maxLevel
     });
+    console.log(this.state)
   }
 
   setRadius(data) {
     console.log("DATA", data)
+    if (data && data.transform && data.radius) {
     this.setState({...this.state,
-      radius: data
-    });
+      radius: data.transform(data.radius)
+    })}
+    console.log(this.state)
   }
 
   getUrl() {
@@ -56,11 +60,9 @@ class Home extends Component {
     // cc = <ClimberCard climber={this.climber}/>
 
     filter() {
-      
-    }
 
-    componentDidMount() {
-      fetch(this.getUrl(this.state.minLevel, this.state.maxLevel, 50))
+      console.log("filter",this.state);
+      fetch(this.getUrl(this.state.minLevel, this.state.maxLevel, this.radius))
           .then(res => res.json())
           .then(
               (result) => {
@@ -81,6 +83,10 @@ class Home extends Component {
               console.log("error", error);
               }
           );
+    }
+
+    componentDidMount() {
+      this.filter()
     }
 
   handleChange = (event, newValue) => {

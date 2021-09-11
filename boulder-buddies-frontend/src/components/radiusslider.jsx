@@ -22,6 +22,24 @@ class RadiusSlider extends Component {
     },
   });
 
+  s(x) {
+        if (x === 0) {
+            return 1;
+        } else if (x === 1) {
+          return 5;
+      } else if (x === 2) {
+          return 10;
+      } else if (x === 3) {
+          return 25;
+      } else if (x === 4) {
+          return 50;
+      } else if (x === 5) {
+          return 100;
+      } else if (x === 6) {
+          return this.MAX;
+      } 
+  }
+
   valuetext(value) {
       if (value === this.MAX) { 
           return "Max";
@@ -31,7 +49,7 @@ class RadiusSlider extends Component {
 
   handleChange = (event, newValue) => {
     console.log(event, newValue);
-    this.setState(({radius: newValue}))
+    this.setState(({radius: newValue, transform: this.s}))
     this.props.syncWithParent(this.state)
   };
 
@@ -43,23 +61,8 @@ class RadiusSlider extends Component {
         </Typography>
         <Slider
           value={this.state.radius}
-          scale={(x) => {
-              if (x === 0) {
-                  return 1;
-              } else if (x === 1) {
-                return 5;
-            } else if (x === 2) {
-                return 10;
-            } else if (x === 3) {
-                return 25;
-            } else if (x === 4) {
-                return 50;
-            } else if (x === 5) {
-                return 100;
-            } else if (x === 6) {
-                return this.MAX;
-            } 
-          }}
+          scale={(x) => this.s(x)
+          }
           onChange={this.handleChange}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
