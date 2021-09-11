@@ -13,14 +13,12 @@ constructor(props){
 }
 
 handleToggleOpen = () => {
-    console.log("open");
 	this.setState({
 		isOpen: true
 	});
 }
 
 handleToggleClose = () => {
-    console.log("close");
 	this.setState({
 		isOpen: false
 	});
