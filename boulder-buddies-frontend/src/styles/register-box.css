@@ -1,0 +1,39 @@
+.box {
+    background-color: white;
+    color: black;
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+    padding-top: 25px;
+    padding-left: 100px;
+}
+
+.name-center {
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.level-center {
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.location-center {
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.bio-center {
+    margin: auto;
+    position: absolute;
+    top: 15%;
+    left: 40%;
+}

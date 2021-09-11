@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import '../styles/back.css'
+import '../styles/register-box.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./";
-
-
 
 class Register extends Component {
 
@@ -62,45 +61,42 @@ class Register extends Component {
       <div className="register">
         <div className="container">
           <div className="row align-items-center my-5">
-            <div className="border col-lg-6">
+            <div className="box">
               <h1 className="font-weight-light">Register</h1>
               <form method="post">
                 <fieldset>
                     <div className="row col-lg-12">
-                      <div className="col-lg-3">
+                      <div className="text-center">
                         <label htmlFor="username">Name: </label>
                       </div>
-                      <div className="col-lg-8">
+                      <div className="name-center">
                         <input type="text" name="username" id="username" placeholder="name" value={this.state.username} onChange={this.handleChange}/> 
                       </div>
                     </div>
                     <div className="row col-lg-12">
-                      <div className="col-lg-3">
+                      <div className="text-center">
                         <label htmlFor="location">Location: </label>
                       </div>
-                      <div className="col-lg-8">
+                      <div className="location-center">
                         <input type="text" name="location" id="location" placeholder="city/neighborhood" value={this.state.location} onChange={this.handleChange}/> 
                       </div>
                     </div>
                     <div className="row col-lg-12">
-                      <div className="col-lg-3">
+                      <div className="text-center">
                         <label htmlFor="level">Level:</label>
-                      </div>
-                      <div className="col-lg-1">
-                        <p>V</p>
-                      </div>
-                      <div className="border">
+                      </div> 
+                      <div className="level-center">
                         <input type="number" name="level" id="level" value={this.state.level} onChange={this.handleChange}/> 
                       </div>
                     </div>
                     <div className="row col-lg-12">
-                      <div className="col-lg-3">
+                      <div className="text-center">
                         <label htmlFor="bio">Bio: </label> 
                       </div>
-                      <div className="col-lg-8">
+                      <div className="bio-center">
                         <textarea name="bio" id="bio" placeholder="bio" value={this.state.bio} onChange={this.handleChange}> </textarea>
                       </div>
-                      <div>
+                      <div className="text-center">
                         <p> Do you identify as a woman or a member of the LGBT community?</p>
                         <input type="checkbox" id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}></input>
                         <label htmlFor="gender">Yes</label>

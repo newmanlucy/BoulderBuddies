@@ -10,8 +10,6 @@ const containerStyle = {
 
 class Home extends Component {
 
-
-
   constructor(props){
     super(props)
     this.state = {
@@ -62,7 +60,6 @@ class Home extends Component {
         <h1>Hello, {this.props.user.name}</h1>
         <div className="container">
           <div className="border row align-items-center my-5">
-              <div className="border row col-lg-12">
               <div className="border col-lg-7">
                 <Map 
                   center={this.props.user.position} 
@@ -72,7 +69,6 @@ class Home extends Component {
                   />
               </div>
               <div className="border col-lg-2"></div>
-              <div className="border col-lg-3">
                 {Object.entries(this.state.others.results).map(([idx, climber]) => (
                   <div key={climber.name}>
                       <ClimberCard climber={climber}/>
@@ -84,9 +80,7 @@ class Home extends Component {
                     position={climber.location}
                   />
                 ))} */}
-              </div>
             </div>
-          </div>
         </div>
       </div>
     );
