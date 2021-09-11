@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import '../styles/back.css'
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Home } from "./";
+
 
 
 class Register extends Component {
@@ -7,11 +10,11 @@ class Register extends Component {
 
   constructor(props){
     super(props)
-    // this.rootUrl = "http://localhost:8000";
-    this.rootUrl = "http://34.125.244.56";
+    this.rootUrl = "http://localhost:8000";
+    // this.rootUrl = "http://34.125.244.56";
     this.endpoint = "/users/";
     this.url = this.rootUrl + this.endpoint;
-    this.state = {username: "", level: "0", location: "", bio: "", gender: false, user: {}}
+    this.state = {username: "", level: "0", location: "", bio: "", gender: false, user: null}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
@@ -61,7 +64,8 @@ class Register extends Component {
   }
 
   render() {
-    return (
+    console.log(this.state);
+    return ( this.state.user === null ?
       <div className="register">
         <div className="container">
           <div className="row align-items-center my-5">
@@ -116,7 +120,18 @@ class Register extends Component {
           </div>
         </div>
       </div>
-    );
+     :
+     <Router>
+        <Switch>
+          <Redirect from="/register" to="/" />
+          <Route path="/" component={() => <Home 
+              uid={this.state.user.id}
+              user={this.state.user}
+            />}
+        />
+        </Switch>
+      </Router>
+     );
   }
 
 }

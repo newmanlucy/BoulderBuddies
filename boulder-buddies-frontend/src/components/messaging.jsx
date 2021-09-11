@@ -4,52 +4,6 @@ import Message from "./message";
 
 class Messaging extends Component {
 
-    messages = [
-        {
-            senderUID: 1,
-            senderName: "Lucy",
-            recepientUID: 2,
-            recipientName: "Erin",
-            text: "Hello! How long have you been climbing?",
-            timeStamp: "Sat 9:46 AM"
-        }, {
-          senderUID: 2,
-          senderName: "Erin",
-          recepientUID: 1,
-          recipientName: "Lucy",
-          text: "Hi!! It's nice to meet you. I just started a few months ago :) HBU?",
-          timeStamp: "Sat 9:47 AM"
-      }, {
-        senderUID: 2,
-        senderName: "Erin",
-        recepientUID: 1,
-        recipientName: "Lucy",
-        text: "Hi!! It's nice to meet you. I just started a few months ago :) HBU?",
-        timeStamp: "Sat 9:47 AM"
-    }, {
-            senderUID: 1,
-            senderName: "Lucy",
-            recepientUID: 2,
-            recipientName: "Erin",
-            text: "Same!! That's awesome!",
-            timeStamp: "Sat 9:48 AM"
-        }, {
-            senderUID: 1,
-            senderName: "Lucy",
-            recepientUID: 2,
-            recipientName: "Erin",
-            text: "There's this bouldering area near New Paltz I've been wanting to check out, are you interested?? I still haven't climbed outside yet, but I really want to try it!",
-            timeStamp: "Sat 9:48 AM"
-        }, {
-          senderUID: 2,
-          senderName: "Erin",
-          recepientUID: 1,
-          recipientName: "Lucy",
-          text: "Cool, yeah!! Definitely interested. When were you thinking of going?",
-          timeStamp: "Sat 9:48 AM"
-      }
-    ]
-
   constructor(props){
     super(props)
     this.state = {
@@ -118,7 +72,7 @@ class Messaging extends Component {
     }
 
   render() {
-    return (
+    return ( 
       <div className="messaing">
         <div className="container">
           <div className="border row my-5">

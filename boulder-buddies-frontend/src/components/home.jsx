@@ -8,11 +8,6 @@ const containerStyle = {
   height: '800px'
 };
 
-const center = {
-  lat: 41.0,
-  lng: -74.0
-};
-
 class Home extends Component {
 
 
@@ -28,7 +23,7 @@ class Home extends Component {
 
   getUrl(minLevel, maxLevel, radius) {
     console.log(this.props);
-    let url = this.urlRoot + "/users/" + this.props.uid + "/query/";
+    let url = this.urlRoot + "/users/" + this.props.uid + "/query";
     let qString = `?min_level=${minLevel}&max_level${maxLevel}=&radius=${radius}`
     url += qString
     console.log(url)
@@ -38,7 +33,7 @@ class Home extends Component {
     // cc = <ClimberCard climber={this.climber}/>
 
     componentDidMount() {
-      fetch(this.getUrl(1, 3, 50))
+      fetch(this.getUrl(parseInt(this.props.user.level) - 2, parseInt(this.props.user.level) + 2, 50))
           .then(res => res.json())
           .then(
               (result) => {
@@ -64,11 +59,12 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
+        <h1>Hello, {this.props.user.name}</h1>
         <div className="container">
           <div className="border row align-items-center my-5">
               <div className="border row col-lg-12">
               <div className="border col-lg-7">
-                <Map center={center} containerStyle={containerStyle} others={this.state.others.results} />
+                <Map center={this.props.user.position} containerStyle={containerStyle} others={this.state.others.results} />
               </div>
               <div className="border col-lg-2"></div>
               <div className="border col-lg-3">

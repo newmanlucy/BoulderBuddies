@@ -4,11 +4,11 @@ class Message extends Component {
     getStyle() {
         if (this.props.message.senderUID === this.props.uid1) {
             return {
-                backgroundColor: "LightGray"
+                backgroundColor: "Violet"
             }
         } else {
             return {
-                backgroundColor: "Violet"
+                backgroundColor: "LightGray"
             }
         }
     }
