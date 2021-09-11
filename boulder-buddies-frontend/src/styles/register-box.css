@@ -4,6 +4,12 @@
     margin: auto;
 }
 
+.logo-size {
+    margin: auto;
+    height: 200px;
+    width: 150px;
+}
+
 .text-center {
     text-align: center;
     padding-top: 25px;
@@ -34,6 +40,6 @@
 .bio-center {
     margin: auto;
     position: absolute;
-    top: 15%;
+    top: 25%;
     left: 40%;
 }

@@ -64,6 +64,7 @@ class Register extends Component {
         <div className="container">
           <div className="row align-items-center my-5">
             <div className="box">
+              <img className="logo-size" src={process.env.PUBLIC_URL + '/bb_logo_pink.png'} alt='BB Logo'/> 
               <h1 className="font-weight-light">Register</h1>
               <form method="post">
                 <fieldset>
@@ -96,7 +97,7 @@ class Register extends Component {
                         <label htmlFor="bio">Bio: </label> 
                       </div>
                       <div className="bio-center">
-                        <textarea name="bio" id="bio" placeholder="bio" value={this.state.bio} onChange={this.handleChange}> </textarea>
+                        <textarea name="bio" id="bio" style={{width: "300px"}} placeholder="bio" value={this.state.bio} onChange={this.handleChange}> </textarea>
                       </div>
                       </div>
                       <div className="row col-lg-12">
