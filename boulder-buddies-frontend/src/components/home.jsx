@@ -24,20 +24,23 @@ class Home extends Component {
     this.state = {
       others: {results: []}
     }  
-    this.urlRoot = "http://localhost:8000/"
-
+    this.urlRoot = "http://localhost:8000"
+    // this.urlRoot = "http://34.125.244.56"
   }
 
-  getUrl() {
+  getUrl(minLevel, maxLevel, radius) {
     console.log(this.props);
-    const url = this.urlRoot + "users/" + this.props.uid + "/query/";
-    console.log()
+    let url = this.urlRoot + "/users/" + this.props.uid + "/query/";
+    let qString = `?min_level=${minLevel}&max_level${maxLevel}=&radius=${radius}`
+    url += qString
+    console.log(url)
+    return url
   }
     // climber = {"name": "Rachel", "level": 4, "location": "Boston", "bio": "Hi...."};
     // cc = <ClimberCard climber={this.climber}/>
 
     componentDidMount() {
-      fetch(this.getUrl())
+      fetch(this.getUrl(1, 3, 500))
           .then(res => res.json())
           .then(
               (result) => {
@@ -45,6 +48,7 @@ class Home extends Component {
                   isLoaded: true,
                   others: result
               });
+              console.log("state", this.state)
               },
               // Note: it's important to handle errors here
               // instead of a catch() block so that we don't swallow
@@ -54,7 +58,7 @@ class Home extends Component {
                   isLoaded: true,
                   error
               });
-              console.log(error);
+              console.log("error", error);
               }
           );
     }

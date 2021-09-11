@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 class Map extends Component {
     componentDidMount() {
@@ -40,7 +40,10 @@ class Map extends Component {
             { /* Child components, such as markers, info windows, etc. */ }
             <></>
             {Object.entries(this.props.others).map(([idx, climber]) => (
-                <Marker position={climber.position} />
+                <div>
+                    <Marker position={climber.position} />
+                    <InfoWindow position={climber.position} />
+                </div>
             ))}
           </GoogleMap>
           
