@@ -15,8 +15,6 @@ const center = {
 
 class Home extends Component {
 
-
-
   constructor(props){
     super(props)
     this.state = {
@@ -66,12 +64,10 @@ class Home extends Component {
       <div className="home">
         <div className="container">
           <div className="border row align-items-center my-5">
-              <div className="border row col-lg-12">
               <div className="border col-lg-7">
                 <Map center={center} containerStyle={containerStyle} others={this.state.others.results} />
               </div>
               <div className="border col-lg-2"></div>
-              <div className="border col-lg-3">
                 {Object.entries(this.state.others.results).map(([idx, climber]) => (
                   <div key={climber.name}>
                       <ClimberCard climber={climber}/>
@@ -83,9 +79,7 @@ class Home extends Component {
                     position={climber.location}
                   />
                 ))} */}
-              </div>
             </div>
-          </div>
         </div>
       </div>
     );
