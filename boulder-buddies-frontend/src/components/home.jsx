@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import { Map } from "./";
 import ClimberCard from "./climbercard";
-
+import '../styles/back.css'
 
 const containerStyle = {
   width: '800px',
-  height: '600px'
+  height: '800px'
 };
 
 const center = {
   lat: 41.0,
   lng: -74.0
 };
-
-
 
 class Home extends Component {
 
