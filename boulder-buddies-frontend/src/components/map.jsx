@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import InfoWindowMarker from './infowindowmarker';
 
 class Map extends Component {
     componentDidMount() {
@@ -27,6 +28,10 @@ class Map extends Component {
         
       }
 
+    onLoad(infoWindow) {
+        console.log('infoWindow: ', infoWindow)
+      }
+
     render() {
       return (
         <LoadScript
@@ -40,11 +45,19 @@ class Map extends Component {
             { /* Child components, such as markers, info windows, etc. */ }
             <></>
             {Object.entries(this.props.others).map(([idx, climber]) => (
-                <div>
-                    <Marker position={climber.position} />
-                    <InfoWindow position={climber.position} />
-                </div>
+                <InfoWindowMarker user={climber} />
+                // <Marker key={idx} position={climber.position} />
             ))}
+            {/* {Object.entries(this.props.others).map(([idx, climber]) => (
+                <InfoWindow onLoad={this.onLoad} key={idx} position={climber.position} >
+                    <div>
+                        <h1>{climber.name}</h1>
+                        <h2>{climber.location}, {climber.level}</h2>
+                    </div>
+                </InfoWindow>
+            ))} */}
+
+
           </GoogleMap>
           
         </LoadScript>

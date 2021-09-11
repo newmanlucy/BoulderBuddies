@@ -40,7 +40,7 @@ class Home extends Component {
     // cc = <ClimberCard climber={this.climber}/>
 
     componentDidMount() {
-      fetch(this.getUrl(1, 3, 500))
+      fetch(this.getUrl(1, 3, 50))
           .then(res => res.json())
           .then(
               (result) => {
