@@ -3,6 +3,8 @@ import '../styles/back.css'
 import '../styles/register-box.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class Register extends Component {
 
@@ -96,14 +98,27 @@ class Register extends Component {
                       <div className="bio-center">
                         <textarea name="bio" id="bio" placeholder="bio" value={this.state.bio} onChange={this.handleChange}> </textarea>
                       </div>
-                      <div className="text-center">
+                      </div>
+                      <div className="row col-lg-12">
+                      <div className="text-center col-8">
                         <p> Do you identify as a woman or a member of the LGBT community?</p>
-                        <input type="checkbox" id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}></input>
-                        <label htmlFor="gender">Yes</label>
+                        {/* <input type="checkbox" id="gender" name="gender" value={this.state.gender} onChange={this.handleChange}></input> */}
+                        {/* <label htmlFor="gender">Yes</label> */}
+                      
+                      </div>
+                      <div className="col-2 d-flex align-items-center">
+                        <FormControlLabel
+                          control={<Checkbox name="checkedA" />}
+                          label="Yes"
+                          value={this.state.gender} 
+                          onChange={this.handleChange}
+                        />
                       </div>
                     </div>
                 </fieldset>
+                <div style={{padding: "5px"}}>
                 <button onClick={this.handleSubmit}>Register</button>
+                </div>
             </form>
             </div>
           </div>
