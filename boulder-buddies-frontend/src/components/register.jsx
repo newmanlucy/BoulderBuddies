@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { Home } from "./";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+
 
 class Register extends Component {
 
@@ -109,7 +111,7 @@ class Register extends Component {
                       </div>
                       <div className="col-2 d-flex align-items-center">
                         <FormControlLabel
-                          control={<Checkbox name="checkedA" />}
+                          control={<Checkbox name="gender" id="gender" />}
                           label="Yes"
                           value={this.state.gender} 
                           onChange={this.handleChange}
@@ -117,8 +119,14 @@ class Register extends Component {
                       </div>
                     </div>
                 </fieldset>
-                <div style={{padding: "5px"}}>
-                <button onClick={this.handleSubmit}>Register</button>
+                <div style={{padding: "10px"}}>
+                <Button 
+                variant="contained" 
+                color="primary"
+                onClick={this.handleSubmit}
+              >
+                Register
+              </Button>
                 </div>
             </form>
             </div>

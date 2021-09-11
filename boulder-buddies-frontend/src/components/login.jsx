@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import '../styles/back.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./";
+import TextField from '@material-ui/core/TextField';
+
 
 class Login extends Component {
 
@@ -43,17 +45,9 @@ class Login extends Component {
     render() {
         return this.state.user === null ? <div className="home">
             <div className="container">
-                <form >
+                <form onSubmit={this.handleSubmit}>
                     <div>
-                    <label for="name">Name: </label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        placeholder="name" 
-                        onChange={this.handleChange}
-                        />
-                    <input type="button" value="Login" onClick={this.handleSubmit} />
+                    <TextField id="standard-basic" label="Name" onChange={this.handleChange} />
                     </div>
                 </form>
                 <div>
