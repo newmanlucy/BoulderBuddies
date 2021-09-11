@@ -34,3 +34,20 @@ class User(models.Model):
                 "level": self.level,
                 "bio": self.bio,
                 "position": self.getLocationFromGoogle()}
+
+class Message(models.Model):
+     sender = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
+     recipient =  models.ForeignKey(User, related_name="recipient", on_delete=models.CASCADE)
+     text = models.CharField(max_length=2000)
+     timeStamp = models.DateTimeField(auto_now_add=True)
+
+     def getJson(self):
+         return {
+             "id": self.id,
+             "senderName": self.sender.name,
+             "recipientName": self.recipient.name,
+             "senderUID": self.sender.id,
+             "recipientUID": self.recipient.name,
+             "text": self.text,
+             "timeStamp": self.timeStamp.strftime('%m-%d-%Y %H:%M')
+         }

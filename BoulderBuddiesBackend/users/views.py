@@ -1,11 +1,12 @@
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
-from .models import User
+from .models import User, Message
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.template import loader
 from django.shortcuts import render
+from django.db.models import Q
 import requests
 
 
@@ -55,6 +56,22 @@ def editUserHtml(request, user_id):
         'user': user
     }
     return render(request, 'edit.html', context)
+
+@csrf_exempt
+def message(request, user_id1, user_id2):
+    if request.method == 'POST':
+        text = request.POST['text']
+        m = Message(sender_id=user_id1, recipient_id=user_id2, text=text)
+        m.save()
+        return JsonResponse(m.getJson())
+    else:
+        u1_sent = Q(sender=user_id1) & Q(recipient=user_id2)
+        u1_received = Q(sender=user_id2) & Q(recipient=user_id1)
+        messages = Message.objects.filter((u1_sent) | (u1_received))
+        res = {"messages": []}
+        for m in messages:
+            res["messages"].append(m.getJson())
+        return JsonResponse(res)
 
 # POST /users : create user
 @csrf_exempt

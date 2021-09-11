@@ -5,6 +5,7 @@ from .views import  User
 
 urlpatterns = [
     path('<int:user_id>/', views.getUser, name='getUser'),
+    path('<int:user_id1>/messages/<int:user_id2>', views.message, name='message'),
     path('<int:user_id>/profile/', views.getUserHtml, name='getUserHtml'),
     path('',views.postUser, name='postUser'),
     path('<int:user_id>/edit/', views.editUserHtml, name='editUserHtml'),
