@@ -1,5 +1,6 @@
 # Boulder Buddies
 Tech Together Boston 2021
+
 Developers: Lucille (Lucy) Newman, Taniya Shaffer
 
 ## How to Use
