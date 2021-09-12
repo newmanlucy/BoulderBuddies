@@ -9,8 +9,8 @@ class Login extends Component {
 
     constructor(props){
         super(props)
-        this.rootUrl = "http://localhost:8000";
-        // this.rootUrl = "http://34.125.244.56";
+        // this.rootUrl = "http://localhost:8000";
+        this.rootUrl = "http://34.125.244.56";
         this.state = {username: "", user: null}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

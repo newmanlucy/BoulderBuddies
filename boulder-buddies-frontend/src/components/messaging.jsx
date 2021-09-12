@@ -10,8 +10,8 @@ class Messaging extends Component {
       messages: [],
       text: ""
     }  
-    this.urlRoot = "http://localhost:8000"
-    // this.urlRoot = "http://34.125.244.56"
+    // this.urlRoot = "http://localhost:8000"
+    this.urlRoot = "http://34.125.244.56"
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdateState = this.handleUpdateState.bind(this);

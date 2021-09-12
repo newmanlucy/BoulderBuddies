@@ -22,7 +22,8 @@ class Home extends Component {
       maxLevel: parseInt(this.props.user.level) + 2,
       radius: 50
     }  
-    this.urlRoot = "http://localhost:8000"
+    //this.urlRoot = "http://localhost:8000";
+    this.urlRoot = "http://34.125.244.56";
     this.setRadius = this.setRadius.bind(this);
     this.setMinMaxLevel = this.setMinMaxLevel.bind(this);
     this.filter = this.filter.bind(this);

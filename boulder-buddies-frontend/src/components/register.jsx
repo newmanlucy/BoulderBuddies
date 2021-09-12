@@ -13,8 +13,8 @@ class Register extends Component {
 
   constructor(props){
     super(props)
-    this.rootUrl = "http://localhost:8000";
-    // this.rootUrl = "http://34.125.244.56";
+    //this.rootUrl = "http://localhost:8000";
+    this.rootUrl = "http://34.125.244.56";
     this.endpoint = "/users/";
     this.url = this.rootUrl + this.endpoint;
     this.state = {username: "", level: "0", location: "", bio: "", gender: false, user: null}
