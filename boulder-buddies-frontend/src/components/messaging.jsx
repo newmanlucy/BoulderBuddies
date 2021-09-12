@@ -29,6 +29,7 @@ class Messaging extends Component {
 
   handleChange(e) {
     this.setState({...this.state, "text": e.target.value})
+    console.log(this.state)
   }
 
   handleSubmit(e) {
@@ -43,10 +44,6 @@ class Messaging extends Component {
     }).then( res => res.json()).then(this.handleUpdateState)                    
   }
 
-  UserException(message) {
-    this.message = message;
-    this.name = 'UserException';
-  }
 
   handleUpdateState(data) {
     // console.log(this);
@@ -64,14 +61,12 @@ class Messaging extends Component {
     let url = `${this.urlRoot}/users/${this.props.uid1}/messages/${this.props.uid2}`;
     return url
   }
-    // climber = {"name": "Rachel", "level": 4, "location": "Boston", "bio": "Hi...."};
-    // cc = <ClimberCard climber={this.climber}/>
-
     componentDidMount() {
       fetch(this.getUrl())
           .then(res => res.json())
           .then(
               (result) => {
+                console.log(result)
               this.setState({
                   isLoaded: true,
                   messages: result["messages"],
@@ -125,13 +120,13 @@ class Messaging extends Component {
               }}
               />
           </Grid>
-          <Grid item display="inline" alignItems="center" style={{width: "80%"}}>
-            <h3>{this.state.messager.name}</h3>
+          <Grid item alignItems="center" style={{width: "80%"}}>
+            <h3 style={{marginTop: "6px"}}>{this.state.messager.name}</h3>
           </Grid>
         </Grid>
         </Paper>
         <Paper elevation={3} style={{width: "550px"}}>
-        <List className="" style={{maxHeight: '800px', 
+        <List className="" style={{height: '800px', 
           overflow: 'scroll',
           display: "flex",
           flexDirection: "column-reverse"
@@ -156,6 +151,8 @@ class Messaging extends Component {
                 <Button 
                   // style={{width: "20%", margin: "5px"}} 
                   // type="submit" 
+                  variant="contained" 
+                  color="primary"
                   onClick={this.handleSubmit}
                 > Send </Button>
               </form>
