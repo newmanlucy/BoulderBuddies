@@ -7,9 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 
-
 class Register extends Component {
-
 
   constructor(props){
     super(props)

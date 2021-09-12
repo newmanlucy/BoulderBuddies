@@ -5,10 +5,13 @@ import '../styles/back.css'
 import LevelSlider from "./levelslider";
 import RadiusSlider from "./radiusslider";
 import Button from '@material-ui/core/Button';
+import '../styles/card-scroll.css'
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 
 const containerStyle = {
-  width: '800px',
+  width: '1000px',
   height: '800px'
 };
 
@@ -96,54 +99,73 @@ class Home extends Component {
     console.log(this.state)
   };
 
+  Group = ({ children }) => {
+    <div className="group">
+      {children}
+    </div>
+  };
+
   render() {
     return (
       <div className="home">
-        <h1>Hello, {this.props.user.name}</h1>
-        <div className="container">
-          <div className="row align-items-center my-5">
-              <div className="col-lg-3"> 
-              <form>
-              <LevelSlider 
-                minLevel={this.state.minLevel} 
-                maxLevel={this.state.maxLevel}
-                onChange={this.setMinMaxLevel}
-                syncWithParent={this.setMinMaxLevel} />
-              <RadiusSlider 
-                radius={this.state.radius} 
-                onChange={this.setRadius}
-                syncWithParent={this.setRadius} />
-              <Button 
-                variant="contained" 
-                color="primary"
-                onClick={this.filter}
-              >
-                Filter
-              </Button>
-              </form>
-              </div>
-              <div className="col-lg-5">
+        <Grid container spacing={3}>
+          <Grid item xs={2} sm={1} display="inline">
+            {/* <img style={{width: "40px"}} src={process.env.PUBLIC_URL + '/bb_logo_pink.png'} alt='BB Logo'/>  */}
+          </Grid>
+          <Grid item alignItems="center" style={{width: "80%"}}>
+            <h1>Hello, {this.props.user.name}</h1>
+            {/* <h3 style={{marginTop: "6px"}}>{this.state.messager.name}</h3> */}
+          </Grid>
+        </Grid>
+          <Grid container spacing={3} className="screen-position">
+              <Grid item xs className="map-position"> 
+              <img className="logo-size" src={process.env.PUBLIC_URL + '/bb_logo_pink.png'} alt='BB Logo'/> 
+                <form>
+                  <Paper elevation={3} style={{padding: '10px'}}>
+                <LevelSlider 
+                  minLevel={this.state.minLevel} 
+                  maxLevel={this.state.maxLevel}
+                  onChange={this.setMinMaxLevel}
+                  syncWithParent={this.setMinMaxLevel} />
+                <RadiusSlider 
+                  radius={this.state.radius} 
+                  onChange={this.setRadius}
+                  syncWithParent={this.setRadius} />
+                <Button 
+                  variant="contained" 
+                  color="primary"
+                  onClick={this.filter}
+                >
+                  Filter
+                </Button>
+                  </Paper>
+                </form>
+              </Grid>
+              <Grid item sm className="map-position">
                 <Map 
                   center={this.props.user.position} 
                   containerStyle={containerStyle} 
                   others={this.state.others.results}
                   my_id={this.props.user.id}
                   />
-              </div>
-              <div className="col-lg-2"></div>
-                {Object.entries(this.state.others.results).map(([idx, climber]) => (
-                  <div key={climber.name}>
-                      <ClimberCard climber={climber}/>
-                  </div>
+              </Grid>
+                <Grid item xs={2}>
+                    <div style={{height: '800px',
+                                    overflowY: 'auto', 
+                                    }}>
+                  {Object.entries(this.state.others.results).map(([idx, climber]) => (
+                          <ClimberCard className="inner" key={climber.name} climber={climber}/>
+                    
               ))}
+                    </div>
+                </Grid>
                 {/* {Object.entries(this.state.others.results).map(([idx, climber]) => (
                     <Marker
                     onLoad={onLoad}
                     position={climber.location}
                   />
                 ))} */}
-            </div>
-        </div>
+            </Grid>
       </div>
     );
   }

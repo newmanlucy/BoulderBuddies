@@ -1,0 +1,44 @@
+.home {
+    margin: auto;
+    width: 1600px;
+}
+
+.map-position {
+    margin: auto;
+}
+
+.screen-position {
+    margin: auto;
+ 
+}
+
+.card-position {
+    margin-left: auto;
+    position: relative;
+    padding-left: 825px;
+    background-color:rebeccapurple;
+}
+
+/*The below four are used to create the scrolling box for climberCards*/
+.wrapper {
+    border: 1px solid gray;
+    overflow-y: scroll;
+    position: relative;
+    margin-left: auto;
+
+}
+
+.area {
+    display: table;
+    background: silver;
+    min-height: 200px;
+}
+
+.item {
+    border: 1px solid red;
+    display: table-cell;
+}
+
+.inner {
+    white-space: nowrap;
+}
