@@ -6,6 +6,7 @@ import { Home } from "./";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Register extends Component {
 
@@ -85,9 +86,9 @@ class Register extends Component {
                       </div>
                     </div>
                     <div className="row col-lg-12">
-                      <div className="text-center">
+                      <Tooltip className="text-center" title="Corresponds to your V grade level. Leave 0 if unsure.">
                         <label htmlFor="level">Level:</label>
-                      </div> 
+                      </Tooltip> 
                       <div className="level-center">
                         <input type="number" name="level" id="level" value={this.state.level} onChange={this.handleChange}/> 
                       </div>
