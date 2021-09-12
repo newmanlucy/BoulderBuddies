@@ -4,7 +4,9 @@ import InfoWindowMarker from './infowindowmarker';
 
 class Map extends Component {
     componentDidMount() {
-        fetch("http://34.125.244.56/users/1")
+      const url = "http://34.125.244.56/users/1"
+      // const url = "http://localhost:8000/users/1"
+        fetch(url)
           .then(res => res.json())
           .then(
             (result) => {
