@@ -63,15 +63,22 @@ def message(request, user_id1, user_id2):
         text = request.POST['text']
         m = Message(sender_id=user_id1, recipient_id=user_id2, text=text)
         m.save()
+        print(m.getJson())
         return JsonResponse(m.getJson())
     else:
+        me = get_object_or_404(User, id=user_id1)
+        messager = get_object_or_404(User, id=user_id2)
         u1_sent = Q(sender=user_id1) & Q(recipient=user_id2)
         u1_received = Q(sender=user_id2) & Q(recipient=user_id1)
         messages = Message.objects.filter((u1_sent) | (u1_received))
-        res = {"messages": []}
+        res = {
+                "messages": [],
+                "me": me.getJson(),
+                "messager": messager.getJson()
+            }
         for m in messages:
             res["messages"].append(m.getJson())
-        res["messages"].sort(key=lambda m: m["id"])
+        res["messages"].sort(key=lambda m: m["id"], reverse=True)
         return JsonResponse(res)
 
 # POST /users : create user
